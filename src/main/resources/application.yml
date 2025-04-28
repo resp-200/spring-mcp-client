@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring-mcp-client
+  main:
+    web-application-type: none
+  ai:
+    mcp:
+      client:
+        sse:
+          connections:
+            server1:
+              url: http://127.0.0.1:8080
+        version: 1.0.0
