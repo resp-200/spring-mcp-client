@@ -4,8 +4,17 @@ spring:
   main:
     web-application-type: none
   ai:
+    openai:
+      api-key: sk-22f8f4132ddf407ebfe31080411d2ac9
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      chat:
+        options:
+          model: qwen-turbo
+
     mcp:
       client:
+        toolcallback:
+          enabled : true
         sse:
           connections:
             server1:
