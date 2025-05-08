@@ -71,36 +71,4 @@ public class SpringMcpClientApplication {
             context.close();
         };
     }
-
-//    @Bean
-//    public CommandLineRunner predefinedQuestions(ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients,
-//                                                 ConfigurableApplicationContext context) {
-//
-//        return args -> {
-//            // 获取工具列表
-//            McpSyncClient mcpSyncClient = mcpSyncClients.get(0);
-//            McpSchema.ListToolsResult listToolsResult = mcpSyncClient.listTools();
-//            Gson gson = new Gson();
-//            System.out.println(gson.toJson(listToolsResult));
-//            // todo 构建提示词
-//            SystemMessage message = new SystemMessage(listToolsResult.toString());
-//            // 用户输出
-//            var chatClient = chatClientBuilder.build();
-//            String userInput = "北京今天天气怎么样";
-//            System.out.println("用户问: " + userInput);
-//            String content = chatClient.prompt(userInput).messages(message).call().content();
-//            System.out.println("AI回答: " + gson.toJson(content));
-//
-//            // todo 解析content
-//
-//            // 调用
-//            McpSchema.CallToolResult callToolResult = mcpSyncClient.callTool(new McpSchema.CallToolRequest("getWeather", Map.of("city", "北京")));
-//            System.out.println(callToolResult);
-//
-//            SystemMessage message1 = new SystemMessage(String.valueOf(callToolResult));
-//            String result = chatClient.prompt(userInput).messages(message, message1).call().content();
-//            System.out.println("AI回答: " + gson.toJson(result));
-//            context.close();
-//        };
-//    }
 }

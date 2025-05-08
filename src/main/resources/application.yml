@@ -5,7 +5,7 @@ spring:
     web-application-type: none
   ai:
     openai:
-      api-key: xxxx
+      api-key: sk-22f8f4132ddf407ebfe31080411d2ac9
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:
