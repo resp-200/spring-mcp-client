@@ -5,7 +5,7 @@ spring:
     web-application-type: none
   ai:
     openai:
-      api-key: xxx
+      api-key: #apikey
       base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:
@@ -13,12 +13,12 @@ spring:
 
     mcp:
       client:
-        stdio:
+        stdio: # stdio配置
           servers-configuration: mcp-servers.json
-        toolcallback:
+        toolcallback: # 配置工具调用
           enabled : true
         sse:
           connections:
-            server1:
+            server1: # sse服务端
               url: http://127.0.0.1:8080
         version: 1.0.0

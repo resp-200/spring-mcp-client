@@ -33,12 +33,12 @@ public class SpringMcpClientApplication {
     }
 
 
-    /** 测试功能
+    /** 测试sdk的Client调用方法
      * @param mcpSyncClients mcpClient，自动注入
      * @param context context
      * @return
      */
-    @Bean
+//    @Bean
     public CommandLineRunner callTool(List<McpSyncClient> mcpSyncClients,
                                                  ConfigurableApplicationContext context) {
 
@@ -46,13 +46,17 @@ public class SpringMcpClientApplication {
             System.out.println("普通client调用方法------------------------------------");
             // 获取mcp-client
             McpSyncClient mcpSyncClient = mcpSyncClients.get(0);
+
+            // 遍历client，打印client名称和工具列表
             for (McpSyncClient syncClient : mcpSyncClients) {
                 System.out.println(syncClient.getClientInfo().name());
                 System.out.println(syncClient.listTools());
             }
 
+            // 主动调用getWeather方法
             McpSchema.CallToolResult callToolResult = mcpSyncClient.callTool(new McpSchema.CallToolRequest("getWeather", Map.of("city", "北京")));
             System.out.println(callToolResult);
+
             // 结束会话
             context.close();
         };
@@ -60,23 +64,25 @@ public class SpringMcpClientApplication {
 
 
 
-//    @Bean
+    @Bean
     public CommandLineRunner callToolByLLM(ChatClient.Builder chatClientBuilder,
                                                  ToolCallbackProvider toolCallbackProvider,
                                                  ConfigurableApplicationContext context) {
 
         return args -> {
             System.out.println("基于spring-ai，llm调用方法--------------------------------");
-            // 获取工具列表
             Gson gson = new Gson();
+
+            // 遍历获取工具列表
             for (FunctionCallback toolCallback : toolCallbackProvider.getToolCallbacks()) {
                 System.out.println(toolCallback.getName() + " " + toolCallback.getDescription() + " " + toolCallback.getInputTypeSchema());
             }
 
-            // 模拟用户输入的信息
+            // 模拟用户输入的信息，并把工具列表传给LLM
             var chatClient = chatClientBuilder
                     .defaultTools(toolCallbackProvider)
                     .build();
+
             String userInput = "获取北京的天气";
 //            String userInput = "获取所有的书";
             System.out.println("用户问: " + userInput);
