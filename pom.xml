@@ -31,10 +31,12 @@
         <spring-ai.version>1.0.0-M7</spring-ai.version>
     </properties>
     <dependencies>
+        <!--stdio格式使用-->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-mcp-client</artifactId>
         </dependency>
+        <!--sse格式使用-->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-mcp-client-webflux</artifactId>

@@ -1,13 +1,12 @@
 {
   "mcpServers": {
-    "filesystem": {
+    "java-mcp": {
       "command": "cmd",
       "args": [
         "/c",
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "D:\\"
+        "D:\\openJdk17\\jdk-17.0.15\\bin\\java",
+        "-jar",
+        "D:\\gitwork\\java-mcp\\target\\java-mcp-1.0-SNAPSHOT.jar"
       ]
     }
   }

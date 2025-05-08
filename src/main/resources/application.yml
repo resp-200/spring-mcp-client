@@ -13,6 +13,8 @@ spring:
 
     mcp:
       client:
+        stdio:
+          servers-configuration: mcp-servers.json
         toolcallback:
           enabled : true
         sse:
