@@ -61,33 +61,55 @@ public class SpringMcpClientApplication {
 
 
 //    @Bean
-//    public CommandLineRunner callToolByLLM(ChatClient.Builder chatClientBuilder,
-//                                                 ToolCallbackProvider toolCallbackProvider,
-//                                                 ConfigurableApplicationContext context) {
-//
-//        return args -> {
-//            System.out.println("基于spring-ai，llm调用方法--------------------------------");
-//            // 获取工具列表
-//            Gson gson = new Gson();
-//            for (FunctionCallback toolCallback : toolCallbackProvider.getToolCallbacks()) {
-//                System.out.println(toolCallback.getName() + " " + toolCallback.getDescription() + " " + toolCallback.getInputTypeSchema());
-//            }
-//
-//            // 模拟用户输入的信息
-//            var chatClient = chatClientBuilder
-//                    .defaultTools(toolCallbackProvider)
-//                    .build();
-//            String userInput = "获取北京的天气";
-////            String userInput = "获取所有的书";
-//            System.out.println("用户问: " + userInput);
-//
-//            // 包装请求LLM
-//            String content = chatClient.prompt(userInput).call().content();
-//            System.out.println("AI回答: " + gson.toJson(content));
-//
-//
-//            // 结束会话
-//            context.close();
-//        };
-//    }
+    public CommandLineRunner callToolByLLM(ChatClient.Builder chatClientBuilder,
+                                                 ToolCallbackProvider toolCallbackProvider,
+                                                 ConfigurableApplicationContext context) {
+
+        return args -> {
+            System.out.println("基于spring-ai，llm调用方法--------------------------------");
+            // 获取工具列表
+            Gson gson = new Gson();
+            for (FunctionCallback toolCallback : toolCallbackProvider.getToolCallbacks()) {
+                System.out.println(toolCallback.getName() + " " + toolCallback.getDescription() + " " + toolCallback.getInputTypeSchema());
+            }
+
+            // 模拟用户输入的信息
+            var chatClient = chatClientBuilder
+                    .defaultTools(toolCallbackProvider)
+                    .build();
+            String userInput = "获取北京的天气";
+//            String userInput = "获取所有的书";
+            System.out.println("用户问: " + userInput);
+
+            // 包装请求LLM
+            String content = chatClient.prompt(userInput).call().content();
+            System.out.println("AI回答: " + gson.toJson(content));
+
+
+            // 结束会话
+            context.close();
+        };
+    }
+
+    @Bean
+    public CommandLineRunner callLLM(ChatClient.Builder chatClientBuilder,
+                                           ToolCallbackProvider toolCallbackProvider,
+                                           ConfigurableApplicationContext context) {
+
+        return args -> {
+
+            // 模拟用户输入的信息
+            var chatClient = chatClientBuilder
+                    .build();
+            String userInput = "获取北京的天气";
+            System.out.println("用户问: " + userInput);
+
+            // 包装请求LLM
+            String content = chatClient.prompt(userInput).call().content();
+            System.out.println("AI回答: " + content);
+
+            // 结束会话
+            context.close();
+        };
+    }
 }
