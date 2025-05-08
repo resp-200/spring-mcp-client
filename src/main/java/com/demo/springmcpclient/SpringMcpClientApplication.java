@@ -91,7 +91,7 @@ public class SpringMcpClientApplication {
         };
     }
 
-    @Bean
+//    @Bean
     public CommandLineRunner callLLM(ChatClient.Builder chatClientBuilder,
                                            ToolCallbackProvider toolCallbackProvider,
                                            ConfigurableApplicationContext context) {
